@@ -1,0 +1,22 @@
+{
+  "name": "thetis",
+  "version": "1.0.0",
+  "description": "A template generator and text",
+  "main": "index.js",
+  "author": "Raphaël MANSUY",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./build/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^9.0.2",
+    "@types/node": "^14.14.6",
+    "@types/readline-sync": "^1.4.3",
+    "fs-extra": "^9.0.1",
+    "readline-sync": "^1.4.10"
+  }
+}
