@@ -15,7 +15,7 @@
     "thetis": "thetis-command"
   },
   "bin": {
-    "thetis-command": "./build/index.js"
+    "thetis-command": "node ./build/index.js"
   },
   "devDependencies": {
     "typescript": "^4.0.5"
