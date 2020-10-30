@@ -2,9 +2,8 @@
 
 import reader from "readline-sync"
 import { ensureDirSync } from "fs-extra"
-import { readFileSync, writeFileSync } from "fs"
+import { readFileSync, writeFileSync, existsSync } from "fs"
 import { Config, Command, Template } from "./model"
-import { config } from "./config"
 
 const version = "1.0"
 
@@ -86,8 +85,26 @@ const executeCommand = (command: Command) => {
   return mapValues
 }
 
+const readConfig = (): Config => {
+  const fileName = "./thetis.json"
+
+  if (!existsSync(fileName)) {
+    throw new Error(`File ${fileName} not found`)
+  }
+
+  const configFile = readFileSync(fileName, {
+    encoding: "utf8",
+    flag: "r"
+  })
+
+  const config: Config = JSON.parse(configFile)
+  return config
+}
+
 const analyzeCommand = (args: string[]) => {
   const [command] = args
+
+  const config = readConfig()
 
   if (!command) {
     listCommands(config)
@@ -111,7 +128,11 @@ const analyzeCommand = (args: string[]) => {
 }
 
 function start() {
-  analyzeCommand(args)
+  try {
+    analyzeCommand(args)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 start()

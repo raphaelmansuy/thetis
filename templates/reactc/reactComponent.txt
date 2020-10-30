@@ -2,19 +2,17 @@ import React from "react"
 ​
 import { %ComponentName%Container } from "./Style"
 ​
-export type %ComponentName%​Properties = {}
+export type %ComponentName%Properties = {}
 ​
-export type %ComponentName%​Events = {}
+export type %ComponentName%Events = {}
 ​
-export type %ComponentName%​Style = {}
+export type %ComponentName%Style = {}
 ​
-export type %ComponentName%​Props = %ComponentName%​Events &
-  %ComponentName%​Properties &
-  %ComponentName%Style
+export type %ComponentName%Props = %ComponentName%Properties & %ComponentName%Events & %ComponentName%Style 
 ​
 export const defaultProps: %ComponentName%Props = {}
 ​
 export const %ComponentName%: React.FC<%ComponentName%Props> = (props) => {
-  return <%ComponentName%Container>%ComponentName%​</%ComponentName%​Container>
+  return <%ComponentName%Container> %ComponentName% ​</%ComponentName%Container>
 }
 ​
