@@ -1,8 +1,9 @@
 {
   "name": "thetis",
   "version": "1.0.4",
-  "description": "A template generator and text",
-  "main": "index.js",
+  "description": "A template generator",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "author": "Raphaël MANSUY",
   "license": "MIT",
   "repository": {
@@ -10,12 +11,13 @@
     "type": ""
   },
   "scripts": {
+    "prepublish": "tsc",
     "build": "tsc",
     "start": "node ./build/index.js",
     "thetis": "thetis-command"
   },
   "bin": {
-    "thetis-command": "node ./build/index.js"
+    "thetis-command": "index.js"
   },
   "devDependencies": {
     "typescript": "^4.0.5"
