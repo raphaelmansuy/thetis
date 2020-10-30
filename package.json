@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "ts-node ./src/index.ts",
-    "prepublish": "tsc",
+    "prepare": "tsc",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "thetis": "thetis"
