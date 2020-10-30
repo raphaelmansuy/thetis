@@ -11,15 +11,17 @@
     "type": ""
   },
   "scripts": {
+    "dev": "ts-node ./src/index.ts",
     "prepublish": "tsc",
     "build": "tsc",
-    "start": "node ./build/index.js",
-    "thetis": "thetis-command"
+    "start": "node ./dist/index.js",
+    "thetis": "thetis"
   },
   "bin": {
-    "thetis-command": "index.js"
+    "thetis": "./dist/index.js"
   },
   "devDependencies": {
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.5"
   },
   "dependencies": {
