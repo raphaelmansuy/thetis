@@ -11,7 +11,11 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node ./build/index.js"
+    "start": "node ./build/index.js",
+    "thetis": "thetis-command"
+  },
+  "bin": {
+    "thetis-command": "index.js"
   },
   "devDependencies": {
     "typescript": "^4.0.5"
