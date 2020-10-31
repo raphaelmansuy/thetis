@@ -5,6 +5,7 @@ export declare type Template = {
 };
 export declare type Command = {
     readonly name: string;
+    readonly description?: string;
     readonly args: ReadonlyArray<string>;
     readonly templates: ReadonlyArray<Template>;
 };
