@@ -3,6 +3,6 @@ import tw from "twin.macro"
 import { css as CSS } from "@emotion/core"
 
 export const %ComponentName%Container = Styled.div`      
-  ${tw`     container   `}    
+  ${tw``}    
   ${CSS``} 
 `

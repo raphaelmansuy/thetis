@@ -7,6 +7,7 @@ export type Template = {
 
 export type Command = {
   readonly name: string
+  readonly description?: string 
   readonly args: ReadonlyArray<string>
   readonly templates: ReadonlyArray<Template>
 }

@@ -2,6 +2,7 @@
   "commands":[
     {
       "name":"reactc",
+      "description": "Generate a React Component and a corresponding story in Storybook",
       "args":["ComponentName"],
       "templates":[
         {
