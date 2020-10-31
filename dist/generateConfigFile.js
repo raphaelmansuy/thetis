@@ -4,10 +4,13 @@ exports.generateConfigFile = exports.readFileTemplateConfig = void 0;
 const fs_1 = require("fs");
 const dialog_1 = require("./dialog");
 const version_1 = require("./version");
+const utils_1 = require("./utils");
 exports.readFileTemplateConfig = () => {
-    const fileName = `${__dirname}/../init_templates/${version_1.programName}.json`;
-    if (!fs_1.existsSync(fileName)) {
-        throw new Error(`File config init template ${fileName} not found`);
+    const fileNames = [`${__dirname}/../init_templates/${version_1.programName}.json`, `${__dirname}/init_templates/${version_1.programName}.json`];
+    const fileName = utils_1.findFirstExisting(fileNames);
+    if (!fileName) {
+        const error = fileNames.reduce((errorMsg, fileName) => (`${errorMsg}\n\File config init template ${fileName} not found`));
+        throw new Error(error);
     }
     const configFile = fs_1.readFileSync(fileName, {
         encoding: "utf8",

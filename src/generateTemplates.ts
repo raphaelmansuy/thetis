@@ -1,24 +1,25 @@
 import path from "path"
 import { existsSync, mkdirSync, copyFileSync, readdirSync, lstatSync } from "fs"
+import { copyFolderSync, findFirstExisting } from "./utils"
 import { ask } from "./dialog"
 
 export const destinationTemplateDir = "./templates"
-export const sourceTemplateDir = `${__dirname}/../init_templates/templates`
 
-const copyFolderSync = (from: string, to: string) => {
-  if (!existsSync(to)) {
-    mkdirSync(to)
-  }
-  readdirSync(from).forEach((element) => {
-    if (lstatSync(path.join(from, element)).isFile()) {
-      copyFileSync(path.join(from, element), path.join(to, element))
-    } else {
-      copyFolderSync(path.join(from, element), path.join(to, element))
-    }
-  })
-}
+const sourceTemplateDirs = [
+  `${__dirname}/../init_templates/templates`,
+  `${__dirname}/init_templates/templates`
+]
 
 export const generateTemplates = () => {
+  const sourceTemplateDir = findFirstExisting(sourceTemplateDirs)
+
+  if (!sourceTemplateDir) {
+    const error = sourceTemplateDirs.reduce(
+      (errorMsg, directory) => `${errorMsg}\n\Directory ${directory} not found`
+    )
+    throw new Error(error)
+  }
+
   if (existsSync(destinationTemplateDir)) {
     const anwser = ask(
       `The directory ${destinationTemplateDir} exists do you want to overwrite it  [Y/y] ? :`
@@ -28,5 +29,7 @@ export const generateTemplates = () => {
 
   copyFolderSync(sourceTemplateDir, destinationTemplateDir)
 
-  console.log(`Template directory ${destinationTemplateDir} created with success`)
+  console.log(
+    `Template directory ${destinationTemplateDir} created with success`
+  )
 }

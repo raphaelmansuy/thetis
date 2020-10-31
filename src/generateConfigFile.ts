@@ -1,12 +1,17 @@
 import { readFileSync, writeFileSync, existsSync } from "fs"
 import { ask } from "./dialog"
 import { programName } from "./version"
+import {findFirstExisting} from "./utils"
+
 
 export const readFileTemplateConfig = () => {
-  const fileName = `${__dirname}/../init_templates/${programName}.json`
 
-  if (!existsSync(fileName)) {
-    throw new Error(`File config init template ${fileName} not found`)
+  const fileNames = [`${__dirname}/../init_templates/${programName}.json`,`${__dirname}/init_templates/${programName}.json`]
+  const fileName = findFirstExisting(fileNames)
+
+  if (!fileName) {
+    const error = fileNames.reduce((errorMsg,fileName) => (`${errorMsg}\n\File config init template ${fileName} not found`))
+    throw new Error(error)
   }
 
   const configFile = readFileSync(fileName, {
