@@ -13,7 +13,7 @@ export const printHelpCommand = (cmd: Command) => {
   console.log(helpCommand)
 }
 
-export const printHelp = (config: Config) => {
+export const printHelp = (config?: Config) => {
   const help = `
 
   --------------------------------------------
@@ -22,26 +22,22 @@ export const printHelp = (config: Config) => {
 
   Commands:
   --------- 
-
-
-  - init : initialize a new ${programName}.json config file a template directory 
-  - list : list all avaiable commands name
+  - init : initialize a new ${programName}.json config file and a templates directory 
+  - list : list all avaiable commands
   - gen  : generate files based on a command name
 
   Examples:
   ---------
 
   > ${programName} list
-
   > ${programName} gen <commandName>
-
   > ${programName} init
 
  `
 
   console.log(help)
 
-  printHelpCommands(config.commands)
+  if (config) printHelpCommands(config.commands)
 }
 
 const printHelpCommands = (commands: ReadonlyArray<Command>) => {
@@ -54,7 +50,7 @@ export const printHelpGenCommand = (config: Config) => {
   console.log(`
       
   Usage:
-  ----- 
+  ------
 
   > ${programName} gen <commandName>
 

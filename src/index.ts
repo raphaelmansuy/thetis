@@ -11,6 +11,7 @@ import { Command } from "./model"
 import { generateTemplate } from "./generation"
 import { readConfig } from "./config"
 import { generateConfigFile } from "./generateConfigFile"
+import { generateTemplates } from "./generateTemplates"
 
 const executeCommand = (command: Command) => {
   console.log(`Execute command ${command.name}`)
@@ -27,20 +28,32 @@ const executeCommand = (command: Command) => {
 const analyzeCommand = (args: string[]) => {
   const [command, commandArg] = args
 
-  const config = readConfig()
+  let config
+
+  try {
+    config = readConfig()
+  } catch (error) {
+    console.log("Config file not found")
+  }
 
   if (!command) {
     printHelp(config)
     return
   }
 
-  if (command.toUpperCase() === "LIST") {
-    printHelp(config)
+  if (command.toUpperCase() === "INIT") {
+    generateConfigFile()
+    generateTemplates()
     return
   }
 
-  if (command.toUpperCase() === "INIT") {
-    generateConfigFile()
+  if (!config) {
+    printHelp()
+    return
+  }
+
+  if (command.toUpperCase() === "LIST") {
+    printHelp(config)
     return
   }
 
