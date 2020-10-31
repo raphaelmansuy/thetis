@@ -1,0 +1,25 @@
+import React from "react"
+import { Story, Meta } from "@storybook/react/types-6-0"
+import { MemoryRouter } from "react-router"
+import {
+  %ComponentName%,
+  %ComponentName%Props,
+  defaultProps
+} from "../../components/%ComponentName%"
+
+export default {
+  title: "Component/%ComponentName%",
+  component:  %ComponentName%,
+  argTypes: {},
+  decorators: [(storyFn) => <MemoryRouter>{storyFn()}</MemoryRouter>]
+} as Meta
+
+
+const Template: Story< %ComponentName%Props> = (args) => (
+    < %ComponentName% {...args} />
+)
+
+export const Default = Template.bind({})
+Default.args = {
+  ...defaultProps
+}
