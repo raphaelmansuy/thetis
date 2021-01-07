@@ -1,10 +1,5 @@
-#!/bin/sh -
+#!/usr/bin/env node
 "use strict";
-":"; /*-
-test1=$(nodejs --version 2>&1) && exec nodejs "$0" "$@"
-test2=$(node --version 2>&1) && exec node "$0" "$@"
-exec printf '%s\n' "$test1" "$test2" 1>&2
-*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const printHelp_1 = require("./printHelp");
 const dialog_1 = require("./dialog");
